@@ -135,9 +135,40 @@ a {
   color: var(--danger);
 }
 
+.message-success {
+  background: #eaf6f1;
+  color: #155d46;
+}
+
 .dashboard {
   width: min(100% - 2rem, 58rem);
   margin: 3rem auto;
+}
+
+.shift-panel {
+  width: min(100% - 2rem, 58rem);
+  margin: 1rem auto 3rem;
+}
+
+.shift-list {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.shift-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.shift-list p {
+  margin: 0.35rem 0 0;
 }
 
 .dashboard-header {

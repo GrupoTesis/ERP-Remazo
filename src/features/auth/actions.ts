@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { isAppRole, roleHome } from "@/lib/permissions/roles";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import type { LoginState } from "@/types/auth";
 
@@ -48,7 +49,7 @@ export async function loginAction(
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("role, active")
+    .select("role, active, reauth_required")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -67,6 +68,31 @@ export async function loginAction(
       };
     }
     redirect("/login?error=inactive");
+  }
+
+  if (profile.reauth_required) {
+    try {
+      const adminClient = createAdminClient();
+      const { data: updatedProfile, error: updateError } = await adminClient
+        .from("profiles")
+        .update({ reauth_required: false })
+        .eq("id", user.id)
+        .select("id")
+        .maybeSingle();
+
+      if (updateError || !updatedProfile) {
+        await supabase.auth.signOut();
+        return {
+          error: "No pudimos renovar tu sesión. Intenta de nuevo más tarde.",
+        };
+      }
+    } catch (error) {
+      console.error("No se pudo limpiar el requisito de reautenticación:", error);
+      await supabase.auth.signOut();
+      return {
+        error: "No pudimos renovar tu sesión. Intenta de nuevo más tarde.",
+      };
+    }
   }
 
   redirect(roleHome[profile.role]);

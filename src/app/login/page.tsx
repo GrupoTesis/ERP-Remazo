@@ -13,7 +13,7 @@ export default async function LoginPage({
         <p className="eyebrow">Sistema de hospedaje</p>
         <h1 id="login-title">Iniciar sesión</h1>
         <p>Ingresa con la cuenta que te proporcionó el administrador.</p>
-        <LoginForm inactive={error === "inactive"} />
+        <LoginForm inactive={error === "inactive"} reauthRequired={error === "reauth"} />
       </section>
     </main>
   );

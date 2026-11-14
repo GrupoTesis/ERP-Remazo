@@ -6,7 +6,13 @@ import type { LoginState } from "@/types/auth";
 
 const initialState: LoginState = {};
 
-export function LoginForm({ inactive = false }: { inactive?: boolean }) {
+export function LoginForm({
+  inactive = false,
+  reauthRequired = false,
+}: {
+  inactive?: boolean;
+  reauthRequired?: boolean;
+}) {
   const [state, formAction, pending] = useActionState(loginAction, initialState);
 
   return (
@@ -14,6 +20,11 @@ export function LoginForm({ inactive = false }: { inactive?: boolean }) {
       {inactive && (
         <p className="message message-error" role="alert">
           La cuenta no está registrada.
+        </p>
+      )}
+      {reauthRequired && (
+        <p className="message message-error" role="alert">
+          Tu turno fue cerrado. Inicia sesión nuevamente para continuar.
         </p>
       )}
       {state.error && (

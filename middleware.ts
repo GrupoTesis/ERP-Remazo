@@ -44,7 +44,7 @@ export async function middleware(request: NextRequest) {
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("active")
+    .select("active, reauth_required")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -62,6 +62,18 @@ export async function middleware(request: NextRequest) {
       );
     }
     return redirectWithCookies(request, "/login?error=inactive", cookiesToSet);
+  }
+
+  if (profile.reauth_required) {
+    const { error: signOutError } = await supabase.auth.signOut();
+    if (signOutError) {
+      return redirectWithCookies(
+        request,
+        "/acceso-denegado?error=verificacion",
+        cookiesToSet,
+      );
+    }
+    return redirectWithCookies(request, "/login?error=reauth", cookiesToSet);
   }
 
   return response;

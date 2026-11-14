@@ -1,8 +1,13 @@
 import { Dashboard } from "@/components/dashboard";
+import { requireOpenReceptionShift } from "@/lib/permissions/require-open-reception-shift";
 import { requireRole } from "@/lib/permissions/require-role";
 
 export default async function CashPage() {
   const { user, role } = await requireRole(["recepcion"]);
+
+  if (role === "recepcion") {
+    await requireOpenReceptionShift(user.id);
+  }
 
   return (
     <Dashboard

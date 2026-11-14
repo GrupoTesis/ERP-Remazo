@@ -16,7 +16,7 @@ export async function requireRole(allowedRoles: AppRole[]) {
 
   const { data: profile, error: profileError } = await supabase
     .from("profiles")
-    .select("role, active")
+    .select("role, active, reauth_required")
     .eq("id", user.id)
     .maybeSingle();
 
@@ -30,6 +30,14 @@ export async function requireRole(allowedRoles: AppRole[]) {
       throw new Error("No se pudo cerrar la sesión de una cuenta inactiva.");
     }
     redirect("/login?error=inactive");
+  }
+
+  if (profile.reauth_required) {
+    const { error: signOutError } = await supabase.auth.signOut();
+    if (signOutError) {
+      throw new Error("No se pudo cerrar la sesión que requiere autenticación.");
+    }
+    redirect("/login?error=reauth");
   }
 
   if (profile.role !== "admin" && !allowedRoles.includes(profile.role)) {
