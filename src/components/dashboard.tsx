@@ -6,6 +6,7 @@ import type { AppRole } from "@/types/auth";
 const roleLinks: Record<AppRole, Array<{ href: string; label: string }>> = {
   admin: [
     { href: "/recepcion", label: "Panel central" },
+    { href: "/admin/habitaciones", label: "Habitaciones y tarifas" },
     { href: "/limpieza", label: "Panel de limpieza" },
     { href: "/caja", label: "Caja" },
     { href: "/inventario", label: "Inventario" },

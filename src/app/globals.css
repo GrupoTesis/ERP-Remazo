@@ -217,6 +217,261 @@ a {
   border-color: var(--accent);
 }
 
+.room-board-panel,
+.room-management {
+  width: min(100% - 2rem, 58rem);
+  margin: 1rem auto 3rem;
+}
+
+.room-board-heading,
+.room-settings-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.room-board-heading {
+  margin-bottom: 1rem;
+}
+
+.room-board-heading h2,
+.room-settings-heading h3 {
+  margin: 0.3rem 0;
+}
+
+.room-board-heading > p,
+.room-settings-heading p {
+  margin: 0;
+}
+
+.room-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.room-card {
+  min-width: 0;
+  padding: 1.15rem;
+  border: 1px solid var(--line);
+  border-top: 0.35rem solid var(--muted);
+  border-radius: 0.8rem;
+  background: var(--surface);
+}
+
+.room-card-disponible {
+  border-top-color: #16834a;
+}
+
+.room-card-ocupada {
+  border-top-color: #b94337;
+}
+
+.room-card-limpieza {
+  border-top-color: #b47a00;
+}
+
+.room-card-inactive {
+  opacity: 0.68;
+}
+
+.room-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.room-status {
+  font-weight: 700;
+}
+
+.room-status-disponible {
+  color: #116b3c;
+}
+
+.room-status-ocupada {
+  color: #a33128;
+}
+
+.room-status-limpieza {
+  color: #875b00;
+}
+
+.room-status-icon {
+  display: inline-grid;
+  width: 1.5rem;
+  height: 1.5rem;
+  place-items: center;
+  border-radius: 50%;
+  background: #edf1f3;
+  font-weight: 700;
+}
+
+.room-card h3 {
+  margin: 0.8rem 0 0.25rem;
+}
+
+.room-card > p {
+  margin: 0.25rem 0;
+}
+
+.room-inactive-label {
+  color: var(--danger);
+  font-weight: 700;
+}
+
+.room-action {
+  width: 100%;
+  margin-top: 0.9rem;
+}
+
+.room-dialog {
+  width: min(100% - 2rem, 32rem);
+  max-width: 32rem;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
+  color: var(--ink);
+  box-shadow: 0 1rem 3rem rgb(23 33 43 / 25%);
+}
+
+.room-dialog::backdrop {
+  background: rgb(23 33 43 / 55%);
+}
+
+.room-dialog-form {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.5rem;
+}
+
+.room-dialog-form h2,
+.room-dialog-form p {
+  margin: 0;
+}
+
+.room-dialog-form label,
+.room-edit-form label,
+.room-rate-form label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 700;
+}
+
+.room-dialog-form select,
+.room-dialog-form textarea,
+.room-edit-form input,
+.room-rate-form input,
+.room-rate-form select,
+.room-rate-row input {
+  width: 100%;
+  min-height: 2.7rem;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid #bdc9d1;
+  border-radius: 0.5rem;
+  background: white;
+  color: var(--ink);
+  font: inherit;
+}
+
+.room-dialog-form :focus-visible,
+.room-edit-form :focus-visible,
+.room-rate-form :focus-visible,
+.room-rate-row :focus-visible {
+  outline: 3px solid #78b9ad;
+  outline-offset: 2px;
+}
+
+.room-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.4rem;
+}
+
+.room-management-intro {
+  margin-bottom: 1rem;
+}
+
+.room-management-intro h2 {
+  margin: 0.3rem 0 0.6rem;
+}
+
+.room-management-intro p:last-child {
+  margin-bottom: 0;
+}
+
+.room-settings-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.room-settings-card {
+  min-width: 0;
+}
+
+.room-settings-heading {
+  margin-bottom: 1rem;
+}
+
+.room-edit-form,
+.room-rate-form {
+  display: grid;
+  grid-template-columns: minmax(6rem, 0.5fr) minmax(10rem, 1fr) auto;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.room-edit-form .button,
+.room-rate-form .button {
+  min-height: 2.7rem;
+}
+
+.room-rates {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.room-rates h4 {
+  margin: 0 0 0.75rem;
+}
+
+.room-rate-list {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style: none;
+}
+
+.room-rate-row {
+  display: grid;
+  grid-template-columns: minmax(6rem, 1fr) minmax(7rem, 0.7fr) minmax(6rem, 0.7fr) auto;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.room-rate-current {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
 .dashboard-mobile {
   width: min(100% - 1.25rem, 34rem);
   margin: 1rem auto;
@@ -246,6 +501,44 @@ a {
   }
 
   .dashboard-header .button {
+    width: 100%;
+  }
+
+  .room-board-heading,
+  .room-settings-heading {
+    align-items: flex-start;
+  }
+
+  .room-settings-heading {
+    flex-direction: column;
+  }
+
+  .room-settings-heading .button {
+    width: 100%;
+  }
+
+  .room-edit-form,
+  .room-rate-form {
+    grid-template-columns: 1fr;
+  }
+
+  .room-rate-row {
+    grid-template-columns: minmax(0, 1fr) minmax(6rem, 0.7fr);
+  }
+
+  .room-rate-current {
+    display: none;
+  }
+
+  .room-rate-row .button {
+    grid-column: 1 / -1;
+  }
+
+  .room-dialog-actions {
+    flex-direction: column-reverse;
+  }
+
+  .room-dialog-actions .button {
     width: 100%;
   }
 }
